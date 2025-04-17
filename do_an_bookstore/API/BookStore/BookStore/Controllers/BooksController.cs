@@ -1,13 +1,7 @@
 ﻿using BookStore.Models;
 using BookStore.Models.CustomModel;
-using BookStore.Services;
 using BookStore.Services.Interface;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BookStore.Controllers
 {
