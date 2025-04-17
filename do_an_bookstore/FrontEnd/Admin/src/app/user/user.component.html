@@ -1,0 +1,153 @@
+
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+  <div class="body-wrapper">
+    <!--  Header Start -->
+
+    <!--  Header End -->
+    <div class="body-wrapper-inner">
+      <p-table [value]="listUser" [tableStyle]="{'min-width': '60rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between" style="display: flex; justify-content: space-between;">
+                Người dùng
+                <p-button icon="pi pi-refresh" (onClick)="getAll()"></p-button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Ngày sinh</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Trạng thái</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.fullName}}</td>
+                <td>{{product.email}}</td>
+                <td>{{product.dateOfBirth |  date:'dd/MM/yyyy'}}</td>
+                <td>{{product.address}}</td>
+                <td>{{product.phoneNumber}}</td>
+                <td>{{product.status}}</td>
+                <td style="width: 100px;">
+                  <button pButton pRipple type="button" class="p-button-info p-button-text" style="padding: 8px; border-radius: 5px;" (click)="this.showUser(product.id)"><i class=" pi pi-eye"></i></button>
+                  <button pButton pRipple type="button" class="p-button-danger p-button-text" style="padding: 8px; border-radius: 5px;" (click)="lockAccount(product.email)" *ngIf="product.status == 'Hoạt động' && roleLogin != 3"><i class="fa-solid fa-lock" style="font-weight: 900;"></i></button>
+                  <button pButton pRipple type="button" class="p-button-danger p-button-text" style="padding: 8px; border-radius: 5px;" (click)="unlockAccount(product.email)" *ngIf="product.status == 'Đang khóa' && roleLogin != 3"><i class="fa-solid fa-lock-open" style="color: green; font-weight: 900;"></i></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+
+            </div>
+        </ng-template>
+      </p-table>
+      <div style="text-align: center; width: 100%;">
+        <p-paginator  [rows]="20" [totalRecords]="listUser.length"></p-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Thông tin người dùng" [(visible)]="showForm" maximizable="true" [style]="{width: '100%', maxHeight: '100vh'}" [draggable]="false" [modal]="true">
+
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="itemDes">
+        <div>
+          <span style="margin-right: 20px;">Tên:</span>
+        </div>
+        <div style="width: 100%;">
+          <input type="text" pInputText [(ngModel)]="body.fullName" style="padding: 5px 10px; width: 100%;" disabled/>
+        </div>
+
+      </div>
+
+      <div class="itemDes">
+        <div>
+          <span style="margin-right: 20px;">Email(Tên đăng nhập):</span>
+        </div>
+        <div style="width: 100%;">
+          <input type="text" pInputText [(ngModel)]="body.email" style="padding: 5px 10px; width: 100%;" disabled/>
+        </div>
+
+      </div>
+
+
+
+      <div class="itemDes">
+        <div>
+          <span style="margin-right: 20px;">Địa chỉ:</span>
+        </div>
+        <div style="width: 100%;">
+          <input type="text" pInputText [(ngModel)]="body.address" style="padding: 5px 10px; width: 100%;" disabled/>
+        </div>
+
+      </div>
+
+      <div class="itemDes">
+        <div>
+          <span style="margin-right: 20px;">Số điện thoại:</span>
+        </div>
+        <div style="width: 100%;">
+          <input type="text" pInputText [(ngModel)]="body.phoneNumber" style="padding: 5px 10px; width: 100%;" disabled/>
+        </div>
+
+      </div>
+
+      <div class="itemDes">
+        <div>
+          <span style="margin-right: 20px;">Ngày sinh:</span>
+        </div>
+        <div style="width: 100%;">
+          <p-calendar [(ngModel)]="body.dateOfBirth" [showIcon]="true" inputId="icon" disabled></p-calendar>
+        </div>
+
+      </div>
+
+      <div>
+        Đơn hàng đã mua
+      </div>
+      <div>
+          <div class="item" style="justify-content: space-between;" *ngFor="let item of listCurOrder">
+            <div style="display: flex;">
+              <div style="display: flex; align-items: center; width: 100px; justify-content: center ;">
+                <i class="fa-solid fa-ticket" style="font-size: 45px; color: rgb(234, 170, 74);"></i>
+              </div>
+              <div class="item_col" style="max-width: 200px;">
+                <div>Mã đơn</div>
+                <div>{{item.code}}</div>
+              </div>
+              <div class="item_col">
+                <div>Ngày tạo</div>
+                <div>{{item.created | date: 'dd/MM/yyyy HH:mm'}}</div>
+              </div>
+              <div class="item_col">
+                <div>Trạng thái</div>
+                <div *ngIf="item.status != TrangThaiDonHang.DaHuy">{{item.status}}</div>
+                <div *ngIf="item.status == TrangThaiDonHang.DaHuy" style="font-weight: 600; color: red;">{{item.status}}</div>
+              </div>
+              <div class="item_col">
+                <div>Thành tiền</div>
+                <div>{{item.totalPrice | formatVnd}}</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; width: 150px; text-align: center;">
+              <button pButton type="button" class="p-button-raised p-button-rounded p-button-information"
+                style="border-radius: 25px; padding: 6px 8px; width: 100%;justify-content: center; font-size: 14px; "
+                routerLink="/order/{{item.id}}">Xem chi tiết</button>
+            </div>
+          </div>
+      </div>
+  </div>
+  </div>
+
+
+
+</p-dialog>
+
+<p-confirmDialog header="Khóa/Mở khóa tài khoản" icon="fas fa-circle-info"></p-confirmDialog>
+<p-toast></p-toast>
