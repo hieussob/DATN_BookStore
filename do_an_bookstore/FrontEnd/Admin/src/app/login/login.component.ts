@@ -59,6 +59,7 @@ export class LoginComponent {
       return;
     }
     this._loginService.tryLogin(this.element).subscribe(data => {
+      console.log('data: ', data);
       if(data.status == 'success')
       {
         this.messageService.add({severity:'success', summary: 'Thông báo', detail: 'Đăng nhập thành công', life: 3000})

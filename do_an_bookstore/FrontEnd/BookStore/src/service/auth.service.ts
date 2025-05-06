@@ -20,6 +20,7 @@ export class AuthService {
   ){
     if(this.jwt)
     {
+      console.log('jwt: ', this.jwt);
       var userInfo = this.getUserInfo(this.jwt ?? '');
       const body = {
         token: this.jwt
@@ -46,10 +47,12 @@ export class AuthService {
         .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
         .join('')
     );
+    console.log('jsonPayload: ', jsonPayload);
     return JSON.parse(jsonPayload);
   }
 
   getUserInfo(token: string) {
+    console.log('token: ', this.decodeToken(token));
     return this.decodeToken(token);
   }
 
@@ -61,11 +64,13 @@ export class AuthService {
     AuthService.isDangNhap = newData;
     AuthService.userFullName = newDataAccount;
     AuthService.userId = userId;
+    console.log('userId: ', userId);
   }
 
   setAccount(userFullName: any, userId: any): void{
     AuthService.userFullName = userFullName;
     AuthService.userId = userId;
+    console.log('userFullName: ', userId);
     this.updateData(true, userFullName, userId);
   }
 

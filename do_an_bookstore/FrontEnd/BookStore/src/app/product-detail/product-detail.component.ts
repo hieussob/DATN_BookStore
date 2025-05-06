@@ -77,6 +77,7 @@ export class ProductDetailComponent {
   ){
     const storedValueAccount = AuthService.userId;
     this.userId = storedValueAccount;
+    console.log(this.userId);
   }
 
   ngOnInit(): void {

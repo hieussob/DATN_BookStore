@@ -9,6 +9,11 @@ namespace BookStore.Services
     {
         private readonly DbBookContext _context;
 
+        public BookAuthorsService(DbBookContext context)
+        {
+            _context = context;
+        }
+
         // GET: api/BookAuthors
         public async Task<IEnumerable<BookAuthor>> GetBookAuthors()
         {
