@@ -96,6 +96,7 @@ export class ProductDetailComponent {
         })
         this._productDetailService.getDetailBook(id).subscribe(data => {
           this.curBook = data;
+          console.log("currBook: ", this.curBook);
           this.listBookImg = this.curBook.imageUrls.split(',');
           this.curImage = this.listBookImg[0];
           this._productDetailService.getCategoryBook(this.curBook.categoryId).subscribe(data2 => {

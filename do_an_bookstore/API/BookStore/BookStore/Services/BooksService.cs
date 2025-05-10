@@ -22,77 +22,77 @@ namespace BookStore.Services
 
         public async Task<object> GetBook(Guid id)
         {
-            var book = await (from bk in _context.Books
-                  join bktg in _context.BookAuthors on bk.Id equals bktg.BookId into bktgGroup
-                  from bktg in bktgGroup.DefaultIfEmpty()
-                  join tg in _context.Authors on bktg.AuthorId equals tg.Id into tgGroup
-                  from tg in tgGroup.DefaultIfEmpty()
-                  join ncc in _context.Suppliers on bk.SupplierId equals ncc.Id into nccGroup
-                  from ncc in nccGroup.DefaultIfEmpty()
-                  join nph in _context.Publishers on bk.PublisherId equals nph.Id into nphGroup
-                  from nph in nphGroup.DefaultIfEmpty()
-                  join rv in _context.Reviews on bk.Id equals rv.BookId into rvGroup
-                  from rv in rvGroup.DefaultIfEmpty()
-                  join od in _context.OrderDetails on bk.Id equals od.BookId into odGroup
-                  from od in odGroup.DefaultIfEmpty()
-                  join dm in _context.Categories on bk.CategoryId equals dm.Id
-                  where bk.Id == id
-                  select new
-                  {
-                      bk.Id,
-                      bk.ImageUrls,
-                      bk.PageNumber,
-                      bk.Price,
-                      bk.PriceDiscount,
-                      bk.Code,
-                      bk.Size,
-                      bk.Weight,
-                      bk.Title,
-                      bk.Description,
-                      bk.Quantity,
-                      bk.Reviews,
-                      bk.PublicationYear,
-                      bk.CoverType,
-                      bk.OrderDetails,
-                      tenTacGia = tg != null ? tg.FullName : null,
-                      tenNhaCungCap = ncc != null ? ncc.FullName : null,
-                      tenNhaPhatHanh = nph != null ? nph.FullName : null,
-                      tenDanhMuc = dm.Name,
-                      bk.CategoryId,
-                      bk.SupplierId,
-                  }).ToListAsync();
+            var book =  (from bk in _context.Books
+                              join bktg in _context.BookAuthors on bk.Id equals bktg.BookId into bktgGroup
+                              from bktg in bktgGroup.DefaultIfEmpty()
+                              join tg in _context.Authors on bktg.AuthorId equals tg.Id into tgGroup
+                              from tg in tgGroup.DefaultIfEmpty()
+                              join ncc in _context.Suppliers on bk.SupplierId equals ncc.Id into nccGroup
+                              from ncc in nccGroup.DefaultIfEmpty()
+                              join nph in _context.Publishers on bk.PublisherId equals nph.Id into nphGroup
+                              from nph in nphGroup.DefaultIfEmpty()
+                              join rv in _context.Reviews on bk.Id equals rv.BookId into rvGroup
+                              from rv in rvGroup.DefaultIfEmpty()
+                              join od in _context.OrderDetails on bk.Id equals od.BookId into odGroup
+                              from od in odGroup.DefaultIfEmpty()
+                              join dm in _context.Categories on bk.CategoryId equals dm.Id
+                              where bk.Id == id
+                              select new
+                              {
+                                  bk.Id,
+                                  bk.ImageUrls,
+                                  bk.PageNumber,
+                                  bk.Price,
+                                  bk.PriceDiscount,
+                                  bk.Code,
+                                  bk.Size,
+                                  bk.Weight,
+                                  bk.Title,
+                                  bk.Description,
+                                  bk.Quantity,
+                                  bk.Reviews,
+                                  bk.PublicationYear,
+                                  bk.CoverType,
+                                  bk.OrderDetails,
+                                  tenTacGia = tg != null ? tg.FullName : null,
+                                  tenNhaCungCap = ncc != null ? ncc.FullName : null,
+                                  tenNhaPhatHanh = nph != null ? nph.FullName : null,
+                                  tenDanhMuc = dm.Name,
+                                  bk.CategoryId,
+                                  bk.SupplierId,
+                              });
 
 
-            
+
             var ans = book.Select(b => new
-                      {
-                          b.Id,
-                          b.ImageUrls,
-                          b.PageNumber,
-                          b.Price,
-                          b.PriceDiscount,
-                          b.Code,
-                          b.Size,
-                          b.Weight,
-                          b.Title,
-                          b.Description,
-                          b.Quantity,
-                          b.Reviews,
-                          stars = b.Reviews.Average(x => x.Stars),
-                          tenTacGia = string.Join(", ", b.tenTacGia),
-                          soLuongDaBan = (from ord in _context.Orders
-                                       join ordd in _context.OrderDetails on ord.Id equals ordd.OrderId
-                                       where ord.Status == "Giao hàng thành công" && ordd.BookId == b.Id
-                                       select ordd.Quantity
+            {
+                b.Id,
+                b.ImageUrls,
+                b.PageNumber,
+                b.Price,
+                b.PriceDiscount,
+                b.Code,
+                b.Size,
+                b.Weight,
+                b.Title,
+                b.Description,
+                b.Quantity,
+                b.Reviews,
+                stars = b.Reviews.Average(x => x.Stars),
+                tenTacGia = string.Join(", ", b.tenTacGia),
+                soLuongDaBan = (from ord in _context.Orders
+                                join ordd in _context.OrderDetails on ord.Id equals ordd.OrderId
+                                where ord.Status == "Giao hàng thành công" && ordd.BookId == b.Id
+                                select ordd.Quantity
                                        ).Sum(),
-                          b.tenNhaCungCap,
-                          b.tenNhaPhatHanh,
-                          b.tenDanhMuc,
-                          b.PublicationYear,
-                          b.CoverType,
-                          b.CategoryId,
-                          b.SupplierId,
-                      }).FirstOrDefault();
+                b.tenNhaCungCap,
+                b.tenNhaPhatHanh,
+                b.tenDanhMuc,
+                b.PublicationYear,
+                b.CoverType,
+                b.CategoryId,
+                b.SupplierId,
+            }).FirstOrDefault();
 
             return ans;
         }
@@ -163,7 +163,7 @@ namespace BookStore.Services
 
         public async Task<IEnumerable<object>> get3HighestReviewBook()
         {
-            var books = (from book in _context.Books
+            var books = await (from book in _context.Books
                        join review in _context.Reviews on book.Id equals review.BookId into reviewsGroup
                        from review in reviewsGroup.DefaultIfEmpty()
                        group review by new { book.Id, book.Title, book.Price, book.Code, book.PriceDiscount, book.ImageUrls } into bookGroup
@@ -179,7 +179,7 @@ namespace BookStore.Services
                        })
                        .OrderByDescending(b => b.AverageStar)
                        .Take(3)
-                       .ToList();
+                       .ToListAsync();
 
 
             return books;
@@ -190,7 +190,7 @@ namespace BookStore.Services
             var startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
             var endOfWeek = startOfWeek.AddDays(7);
 
-            var Book = (from book in _context.Books
+            var Book = await (from book in _context.Books
                        join orderDetail in _context.OrderDetails on book.Id equals orderDetail.BookId into orderDetails
                        from orderDetail in orderDetails.DefaultIfEmpty()
                        where orderDetail.Created >= startOfWeek && orderDetail.Created < endOfWeek || orderDetail == null // thêm trạng thái là đã giao hàng
@@ -207,7 +207,7 @@ namespace BookStore.Services
                        })
                        .OrderByDescending(b => b.numberSell)
                        .Take(3)
-                       .ToList();
+                       .ToListAsync();
 
             return Book;
         }
@@ -217,7 +217,7 @@ namespace BookStore.Services
             var startOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             var endOfMonth = startOfMonth.AddMonths(1);
 
-            var Book = (from book in _context.Books
+            var Book = await (from book in _context.Books
                        join orderDetail in _context.OrderDetails on book.Id equals orderDetail.BookId into orderDetails
                        from orderDetail in orderDetails.DefaultIfEmpty()
                        where orderDetail.Created >= startOfMonth && orderDetail.Created < endOfMonth || orderDetail == null// thêm trạng thái là đã giao hàng
@@ -234,7 +234,7 @@ namespace BookStore.Services
                        })
                        .OrderByDescending(b => b.numberSell)
                        .Take(3)
-                       .ToList();
+                       .ToListAsync();
 
             return Book;
         }

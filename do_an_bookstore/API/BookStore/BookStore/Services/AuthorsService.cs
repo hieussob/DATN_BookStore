@@ -30,7 +30,7 @@ namespace BookStore.Services
         {
             if (id != author.Id)
             {
-                return false; 
+                return false;
             }
 
             author.Created = DateTime.Now;
@@ -39,15 +39,15 @@ namespace BookStore.Services
             try
             {
                 await _context.SaveChangesAsync();
-                return true; 
+                return true;
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!AuthorExists(id))
                 {
-                    return false; 
+                    return false;
                 }
-                throw; 
+                throw;
             }
         }
 
@@ -66,7 +66,7 @@ namespace BookStore.Services
         {
 
             var anyBookAuthor = _context.BookAuthors.Any(x => x.AuthorId == id);
-            if(anyBookAuthor)
+            if (anyBookAuthor)
             {
                 return false;
             }
