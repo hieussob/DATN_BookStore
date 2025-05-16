@@ -199,7 +199,7 @@ export class CheckoutComponent {
             const currentDate = new Date();
             var randomNum = this.generateUniqueSevenDigitNumber();
             this.chuoiCK = `ORDER${randomNum}`;
-            this.imgQR = `https://img.vietqr.io/image/970422-0328689795-compact2.png?amount=${this.tongCong}&addInfo=Thanh toan don hang ${this.chuoiCK}`;
+            this.imgQR = `https://img.vietqr.io/image/VCB-1027223327-compact2.png?amount=${this.tongCong}&addInfo=Thanh toan don hang ${this.chuoiCK}`;
 
 
             // https://script.google.com/macros/s/AKfycbyYfd6q71PcSBsaoQTQfMEOD858Y-xzu64QK0UxDeRC-u-EViLLI-McNpwlIfb92D3w/exec

@@ -140,7 +140,11 @@ export class CouponComponent {
 
   deleteBook(couponId: any){
     this.confirmationService.confirm({
-      message: 'Xác nhận xóa bản ghi này?',
+      message: 'Bạn chắc chắn muốn xóa bản ghi này?',
+      header: 'Xác nhận',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Có',
+      rejectLabel: 'Không',
       accept: async () => {
         this._couponService.deleteCoupon(couponId).subscribe(data => {
           if(data.status == 'success')

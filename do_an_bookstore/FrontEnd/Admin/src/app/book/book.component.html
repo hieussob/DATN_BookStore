@@ -1,5 +1,5 @@
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-data-sidebar-position="fixed" data-header-position="fixed">
+     data-sidebar-position="fixed" data-header-position="fixed">
   <div class="body-wrapper">
     <!--  Header Start -->
 
@@ -7,45 +7,58 @@ data-sidebar-position="fixed" data-header-position="fixed">
     <div class="body-wrapper-inner">
       <p-table [value]="listBook" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
-            <div class="flex align-items-center justify-content-between" style="display: flex; justify-content: space-between;">
-                Sách
-                <button pButton pRipple type="button" label="Thêm mới" class="p-button-info p-button-text" style="padding: 8px; border-radius: 5px; font-weight: 800;" (click)="showThemMoi()"></button>
-                <div style="font-size: 14px; font-weight: 500;" *ngIf="listBook">{{20 * page + 1}}-{{20 * page + listBook.length}} trong {{curTotalRecord}}</div>
-                <p-button icon="pi pi-refresh" (onClick)="getAll()"></p-button>
+          <div class="flex align-items-center justify-content-between"
+               style="display: flex; justify-content: space-between;">
+            Sách
+            <!--<button pButton pRipple type="button" label="Thêm mới" class="p-button-info p-button-text"
+                    style="padding: 8px; border-radius: 5px; font-weight: 800;" (click)="showThemMoi()"></button>
+            <div class="p-toolbar-group-right">
+              <p-button label="Thêm mới" icon="pi pi-plus" class="p-button-success" (onClick)="showThemMoi()"></p-button>
             </div>
+            <div style="font-size: 14px; font-weight: 500;" *ngIf="listBook">{{ 20 * page + 1 }}
+              -{{ 20 * page + listBook.length }} trong {{ curTotalRecord }}
+            </div>-->
+            <p-button icon="pi pi-refresh" (onClick)="getAll()"></p-button>
+          </div>
         </ng-template>
         <ng-template pTemplate="header">
-            <tr>
-                <th>Tên</th>
-                <th>Code</th>
-                <th>Ảnh</th>
-                <th>Giá</th>
-                <th>Giá sau giảm</th>
-                <th>giá nhập</th>
-                <th>Số lượng</th>
-            </tr>
+          <tr>
+            <th>Tên</th>
+            <th>Code</th>
+            <th>Ảnh</th>
+            <th>Giá</th>
+            <th>Giá sau giảm</th>
+            <th>Giá nhập</th>
+            <th>Số lượng</th>
+            <th>Năm xuất bản</th>
+          </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>{{product.title}}</td>
-                <td>{{product.code}}</td>
-                <td><img [src]="product.imageUrls" [alt]="product.title" width="100" class="shadow-4" /></td>
-                <td>{{product.price  | formatVnd}}</td>
-                <td>{{product.priceDiscount  | formatVnd}}</td>
-                <td>{{product.importPrice | formatVnd}}</td>
-                <td>{{product.quantity}}</td>
-                <td>
-                  <button pButton pRipple type="button" class="p-button-info p-button-text" style="padding: 8px; border-radius: 5px;" (click)="this.showSua(product.id)"><i class=" pi pi-pencil"></i></button>
-                  <button pButton pRipple type="button" class="p-button-danger p-button-text" style="padding: 8px; border-radius: 5px;" (click)="deleteBook(product.id)"><i class=" pi pi-trash"></i></button>
-                </td>
-            </tr>
+          <tr>
+            <td>{{ product.title }}</td>
+            <td>{{ product.code }}</td>
+            <td><img [src]="product.imageUrls" [alt]="product.title" width="100" class="shadow-4"/></td>
+            <td>{{ product.price  | formatVnd }}</td>
+            <td>{{ product.priceDiscount  | formatVnd }}</td>
+            <td>{{ product.importPrice | formatVnd }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.publicationYear }}</td>
+            <td>
+              <button pButton pRipple type="button" class="p-button-info p-button-text"
+                      style="padding: 8px; border-radius: 5px;" (click)="this.showSua(product.id)"><i
+                class=" pi pi-pencil"></i></button>
+              <button pButton pRipple type="button" class="p-button-danger p-button-text"
+                      style="padding: 8px; border-radius: 5px;" (click)="deleteBook(product.id)"><i
+                class=" pi pi-trash"></i></button>
+            </td>
+          </tr>
         </ng-template>
         <ng-template pTemplate="summary">
-            <div class="flex align-items-center justify-content-between">
+          <div class="flex align-items-center justify-content-between">
 
-            </div>
+          </div>
         </ng-template>
-    </p-table>
+      </p-table>
     </div>
     <div style="text-align: center; width: 100%;">
       <p-paginator (onPageChange)="onPageChange($event)" [rows]="20" [totalRecords]="curTotalRecord"></p-paginator>
@@ -53,7 +66,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
   </div>
 </div>
 
-<p-dialog header="Thêm mới/Sửa sách" [(visible)]="showForm" maximizable="true" [style]="{width: '100vw', height: '100vh', maxHeight: 'unset'}" [draggable]="false" [modal]="true">
+<p-dialog header="Thêm mới/Sửa sách" [(visible)]="showForm" maximizable="true"
+          [style]="{width: '100vw', height: '100vh', maxHeight: 'unset'}" [draggable]="false" [modal]="true">
 
   <div class="row">
     <div class="col-lg-6">
@@ -114,7 +128,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
       </div>
       <div class="itemDes">
         <div>
-          <span style="margin-right: 20px;">Năm xuấn bản:</span>
+          <span style="margin-right: 20px;">Năm xuất bản:</span>
         </div>
 
         <input type="text" pInputText [(ngModel)]="body.publicationYear" style="padding: 5px 10px;"/>
@@ -146,17 +160,19 @@ data-sidebar-position="fixed" data-header-position="fixed">
     </div>
     <div class="col-lg-6">
       Ảnh sản phẩm (ảnh đầu tiên sẽ là ảnh đại diện):
-      <p-fileUpload name="myfile[]" [multiple]="true" [customUpload]="true" (uploadHandler)="myUploader($event)" [showUploadButton]="false" (onSelect)="ganFile($event)"
-      (onRemove)="xoaGanFile($event)" (onClear)="clearGanFile()"></p-fileUpload>
+      <p-fileUpload name="myfile[]" [multiple]="true" [customUpload]="true" (uploadHandler)="myUploader($event)"
+                    [showUploadButton]="false" (onSelect)="ganFile($event)"
+                    (onRemove)="xoaGanFile($event)" (onClear)="clearGanFile()"></p-fileUpload>
 
       <div *ngIf="files.length > 0">
-        <button pButton pRipple type="button" label="upload" class="p-button-info p-button-text" style="padding: 8px; border-radius: 5px; font-weight: 800;" (click)="myUploader(files)"></button>
+        <button pButton pRipple type="button" label="upload" class="p-button-info p-button-text"
+                style="padding: 8px; border-radius: 5px; font-weight: 800;" (click)="myUploader(files)"></button>
       </div>
 
-      <div style="margin-top: 10px;"  *ngIf="uploadedUrls.length > 0" >
+      <div style="margin-top: 10px;" *ngIf="uploadedUrls.length > 0">
         <ul style="display: flex;">
           <li *ngFor="let url of uploadedUrls">
-            <img [src]="url" alt="Uploaded Image" width="100" style="margin-right: 10px; object-fit: contain;"  />
+            <img [src]="url" alt="Uploaded Image" width="100" style="margin-right: 10px; object-fit: contain;"/>
           </li>
         </ul>
       </div>
@@ -166,16 +182,18 @@ data-sidebar-position="fixed" data-header-position="fixed">
           <span style="margin-right: 20px;">Danh mục:</span>
         </div>
         <div style="width: 100%;">
-          <p-dropdown [options]="listCategory" [(ngModel)]="body.categoryId" optionLabel="name" optionValue="id" [filter]="true" filterBy="name"></p-dropdown>
+          <p-dropdown [options]="listCategory" [(ngModel)]="body.categoryId" optionLabel="name" optionValue="id"
+                      [filter]="true" filterBy="name"></p-dropdown>
         </div>
       </div>
 
-      <div class="itemDes" >
+      <div class="itemDes">
         <div>
           <span style="margin-right: 20px;">Tác giả:</span>
         </div>
         <div style="width: 100%;">
-          <p-multiSelect [options]="listAuthor" [(ngModel)]="authorSelected" optionLabel="fullName" optionValue="id" filterBy="fullName"></p-multiSelect>
+          <p-multiSelect [options]="listAuthor" [(ngModel)]="authorSelected" optionLabel="fullName" optionValue="id"
+                         filterBy="fullName"></p-multiSelect>
         </div>
       </div>
 
@@ -184,7 +202,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
           <span style="margin-right: 20px;">Nhà xuất bản:</span>
         </div>
         <div style="width: 100%;">
-          <p-dropdown [options]="listPublisher" [(ngModel)]="body.publisherId" optionLabel="fullName" optionValue="id" [filter]="true" filterBy="fullName"></p-dropdown>
+          <p-dropdown [options]="listPublisher" [(ngModel)]="body.publisherId" optionLabel="fullName" optionValue="id"
+                      [filter]="true" filterBy="fullName"></p-dropdown>
         </div>
       </div>
 
@@ -193,7 +212,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
           <span style="margin-right: 20px;">Nhà cung cấp:</span>
         </div>
         <div style="width: 100%;">
-          <p-dropdown [options]="listSupplier" [(ngModel)]="body.supplierId" optionLabel="fullName" optionValue="id" [filter]="true" filterBy="fullName"></p-dropdown>
+          <p-dropdown [options]="listSupplier" [(ngModel)]="body.supplierId" optionLabel="fullName" optionValue="id"
+                      [filter]="true" filterBy="fullName"></p-dropdown>
         </div>
 
       </div>
@@ -208,13 +228,16 @@ data-sidebar-position="fixed" data-header-position="fixed">
       </div>
     </div>
     <div style="text-align: center;" *ngIf="showUpdate == false">
-      <button pButton pRipple type="button" label="Thêm" class="p-button-info p-button-text" style="padding: 8px; border-radius: 5px; font-weight: 800; margin-right: 20px;" (click)="addBook()"></button>
+      <button pButton pRipple type="button" label="Thêm" class="p-button-info p-button-text"
+              style="padding: 8px; border-radius: 5px; font-weight: 800; margin-right: 20px;"
+              (click)="addBook()"></button>
     </div>
     <div style="text-align: center;" *ngIf="showUpdate">
-      <button pButton pRipple type="button" label="Sửa" class="p-button-info p-button-text" style="padding: 8px; border-radius: 5px; font-weight: 800; margin-right: 20px;" (click)="updateBook()"></button>
+      <button pButton pRipple type="button" label="Sửa" class="p-button-info p-button-text"
+              style="padding: 8px; border-radius: 5px; font-weight: 800; margin-right: 20px;"
+              (click)="updateBook()"></button>
     </div>
   </div>
-
 
 
 </p-dialog>

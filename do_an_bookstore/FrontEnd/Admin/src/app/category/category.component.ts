@@ -121,7 +121,11 @@ export class CategoryComponent {
 
   deleteBook(categoryId: any){
     this.confirmationService.confirm({
-      message: 'Xác nhận xóa bản ghi này?',
+      message: 'Bạn chắc chắn muốn xóa bản ghi này?',
+      header: 'Xác nhận',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Có',
+      rejectLabel: 'Không',
       accept: async () => {
         this._categoryService.deleteCategory(categoryId).subscribe(data => {
           if(data.status == 'success')

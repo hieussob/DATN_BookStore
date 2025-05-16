@@ -119,7 +119,11 @@ export class UserComponent {
 
   lockAccount(email: any){
     this.confirmationService.confirm({
-      message: 'Xác nhận khóa tài khoản này?',
+      message: 'Bạn chắc chắn muốn xóa bản ghi này?',
+      header: 'Xác nhận',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Có',
+      rejectLabel: 'Không',
       accept: async () => {
         this._userService.lockUser(email).subscribe(data => {
           if(data.status == 'success')
@@ -134,7 +138,11 @@ export class UserComponent {
 
   unlockAccount(email: any){
     this.confirmationService.confirm({
-      message: 'Xác nhận mở khóa tài khoản này?',
+      message: 'Bạn chắc chắn muốn xóa bản ghi này?',
+      header: 'Xác nhận',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Có',
+      rejectLabel: 'Không',
       accept: async () => {
         this._userService.unlockUser(email).subscribe(data => {
           if(data.status == 'success')
