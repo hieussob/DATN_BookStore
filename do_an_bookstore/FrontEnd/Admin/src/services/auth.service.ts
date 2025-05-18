@@ -22,6 +22,7 @@ export class AuthService {
     if(typeof(storedValueRole) == 'number')
     AuthService.role = storedValueRole;
     AuthService.employeeId = storedValueEmployeeId;
+    console.log(AuthService.employeeId);
   }
 
   // 1: admin, 2: manager, 3: employee

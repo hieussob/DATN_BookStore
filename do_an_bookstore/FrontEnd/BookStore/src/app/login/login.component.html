@@ -1,47 +1,139 @@
-<div style="margin-top: 20px; padding: 40px 0;" #targetElement>
-  <div class="container" style="width: 100%; max-width: unset;">
-  <div class="form-block mx-auto">
-      <div class="text-center mb-4">
-        <img src="assets/images/logo2.png" alt="" style="width: 120px; height: 120px; object-fit: cover;">
-        BookStore
-        <div><b style="font-size: 25px;">Đăng nhập</b></div>
-      </div>
-      <div class="form-group first">
-      <label for="username">Email</label>
-      <input type="text" class="form-control" placeholder="Tên đăng nhập" id="email" [(ngModel)]="element.username" >
-      </div>
-      <div class="form-group last mb-3">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" placeholder="Mật khẩu" id="password" [(ngModel)]="element.password">
-      </div>
-      <div class="d-sm-flex mb-5 align-items-center">
-      <label class="control control--checkbox "><span class="caption">Remember me</span>
-      <input type="checkbox" checked="checked" />
-      <div class="control__indicator"></div>
-      </label>
-      </div>
-      <input type="submit" value="Log In" class="btn btn-block btn-primary" style="width: 100%;" (click)="solveDangNhap()">
+<!--<div style="margin-top: 20px; padding: 40px 0;" #targetElement>-->
+<!--  <div class="container" style="width: 100%; max-width: unset;">-->
+<!--  <div class="form-block mx-auto">-->
+<!--      <div class="text-center mb-4">-->
+<!--        <img src="assets/images/logo2.png" alt="" style="width: 120px; height: 120px; object-fit: cover;">-->
+<!--        BookStore-->
+<!--        <div><b style="font-size: 25px;">Đăng nhập</b></div>-->
+<!--      </div>-->
+<!--      <div class="form-group first">-->
+<!--      <label for="username">Email</label>-->
+<!--      <input type="text" class="form-control" placeholder="Tên đăng nhập" id="email" [(ngModel)]="element.username" >-->
+<!--      </div>-->
+<!--      <div class="form-group last mb-3">-->
+<!--      <label for="password">Password</label>-->
+<!--      <input type="password" class="form-control" placeholder="Mật khẩu" id="password" [(ngModel)]="element.password">-->
+<!--      </div>-->
+<!--      <div class="d-sm-flex mb-5 align-items-center">-->
+<!--      <label class="control control&#45;&#45;checkbox "><span class="caption">Remember me</span>-->
+<!--      <input type="checkbox" checked="checked" />-->
+<!--      <div class="control__indicator"></div>-->
+<!--      </label>-->
+<!--      </div>-->
+<!--      <input type="submit" value="Log In" class="btn btn-block btn-primary" style="width: 100%;" (click)="solveDangNhap()">-->
 
-      <div style="text-align: right; margin-top: 20px;">
-        <a>Chưa có tài khoản?</a><a routerLink="/register" style="color: rgb(93, 25, 157);"> Đăng ký</a>
+<!--      <div style="text-align: right; margin-top: 20px;">-->
+<!--        <a>Chưa có tài khoản?</a><a routerLink="/register" style="color: rgb(93, 25, 157);"> Đăng ký</a>-->
+<!--    </div>-->
+<!--      </div>-->
+
+<!--      <div class="area" >-->
+<!--        <ul class="circles">-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--                <li></li>-->
+<!--        </ul>-->
+<!--  </div >-->
+<!--  </div>-->
+<!--</div>-->
+<!--<p-toast></p-toast>-->
+
+<!--<div-->
+<!--  style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ece9e6, #ffffff); padding: 20px;">-->
+<!--  <div class="card shadow"-->
+<!--       style="max-width: 400px; width: 100%; border-radius: 15px; padding: 40px; background-color: #fff;">-->
+
+<!--    <div class="text-center mb-4">-->
+<!--      <img src="assets/images/logo2.png" alt="Logo"-->
+<!--           style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">-->
+<!--      <h2 class="mt-3" style="font-weight: bold; color: #4a4a4a;">BookStore</h2>-->
+<!--      <div style="font-size: 22px; font-weight: 600; color: #5c2d91;">Đăng nhập</div>-->
+<!--    </div>-->
+
+<!--    <div class="form-group mb-3">-->
+<!--      <label for="email" class="form-label">Email</label>-->
+<!--      <input type="text" class="form-control" id="email" placeholder="Nhập email" [(ngModel)]="element.username">-->
+<!--    </div>-->
+
+<!--    <div class="form-group mb-3">-->
+<!--      <label for="password" class="form-label">Mật khẩu</label>-->
+<!--      <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu"-->
+<!--             [(ngModel)]="element.password">-->
+<!--    </div>-->
+
+<!--    <div class="form-check mb-4 d-flex justify-content-lg-start flex-row align-items-center">-->
+<!--      <input type="checkbox" class="form-check-input" id="rememberMe" checked>-->
+<!--      <label class="form-check-label ml-3 mt-2" for="rememberMe">-->
+<!--        Ghi nhớ đăng nhập-->
+<!--      </label>-->
+<!--    </div>-->
+
+<!--    <button class="btn btn-primary w-100 mb-3" style="background-color: #5c2d91; border: none;"-->
+<!--            (click)="solveDangNhap()">Đăng nhập-->
+<!--    </button>-->
+
+<!--    <div class="text-center" style="font-size: 14px;">-->
+<!--      <span>Chưa có tài khoản?</span>-->
+<!--      <a routerLink="/register" style="color: #5c2d91; font-weight: 500;">Đăng ký ngay</a>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+
+<!--<p-toast></p-toast>-->
+<div style="height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #ece9e6, #ffffff); padding: 20px;">
+  <div style="display: flex; width: 100%; max-width: 900px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border-radius: 16px; overflow: hidden; background: #fff;">
+
+    <!-- Left Side -->
+    <div style="flex: 1; background: #5c2d91; color: white; padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <img src="assets/images/logo2.png" alt="Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;">
+      <h2 style="font-size: 28px; font-weight: bold; margin: 0;">BookStore</h2>
+      <p style="margin-top: 10px; text-align: center; font-size: 16px; line-height: 1.5;">
+        Chào mừng bạn đến với BookStore – nơi mua sách lý tưởng cho bạn!
+      </p>
     </div>
+
+    <!-- Right Side (Form) -->
+    <div style="flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+      <h3 style="font-weight: bold; margin-bottom: 30px; text-align: center; font-size: 24px;">Đăng nhập tài khoản</h3>
+
+      <div style="margin-bottom: 20px;">
+        <label for="email" style="display: block; margin-bottom: 6px;">Email</label>
+        <input type="text" id="email" placeholder="Nhập email" [(ngModel)]="element.username"
+               style="width: 100%; height: 45px; border-radius: 8px; border: 1px solid #ccc; padding-left: 12px; outline: none; transition: border 0.3s;">
       </div>
 
-      <div class="area" >
-        <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-        </ul>
-  </div >
+      <div style="margin-bottom: 20px;">
+        <label for="password" style="display: block; margin-bottom: 6px;">Mật khẩu</label>
+        <input type="password" id="password" placeholder="Nhập mật khẩu" [(ngModel)]="element.password"
+               style="width: 100%; height: 45px; border-radius: 8px; border: 1px solid #ccc; padding-left: 12px; outline: none; transition: border 0.3s;">
+      </div>
+
+      <div style="margin-bottom: 20px; display: flex; align-items: center;">
+        <input type="checkbox" id="rememberMe" checked
+               style="margin-right: 8px; width: 16px; height: 16px;">
+        <label for="rememberMe" style="margin: 0;">Ghi nhớ đăng nhập</label>
+      </div>
+
+      <button (click)="solveDangNhap()"
+              style="width: 100%; padding: 12px; background-color: #5c2d91; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background-color 0.3s;">
+        Đăng nhập
+      </button>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <span>Chưa có tài khoản?</span>
+        <a routerLink="/register" style="color: #5c2d91; font-weight: bold; text-decoration: none;"> Đăng ký ngay</a>
+      </div>
+    </div>
+
   </div>
 </div>
-<p-toast></p-toast>
 
+<p-toast></p-toast>

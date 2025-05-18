@@ -45,6 +45,7 @@ export class ChatboxUserComponent {
         this.scrollToBottom();
 }, 10);
     });
+    console.log("listMessage1", this.listMessage);
 
     const pusher = new Pusher('fec2b4e92fd5692e3fd5', {
       cluster: 'ap1'
@@ -57,6 +58,7 @@ export class ChatboxUserComponent {
         this.scrollToBottom();
 }, 10);
     });
+    console.log("listMessage2", this.listMessage);
 
   }
 
@@ -72,7 +74,7 @@ export class ChatboxUserComponent {
       if(!this.currentChat)
         return;
       this.http.post('https://localhost:7111/api/chat/messages', {
-
+        employeeId: '00000000-0000-0000-0000-000000000000',
         userId: this.userId,
         userName: this.userName,
         message: this.currentChat

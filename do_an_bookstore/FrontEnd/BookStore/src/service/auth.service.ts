@@ -10,6 +10,7 @@ export class AuthService {
   public static userFullName: any;
   public static userId: any;
   public static isDangNhap = false;
+  public static role: any;
   jwt = localStorage.getItem('jwtToken');
   static dataSubject: Subject<boolean> = new Subject<boolean>();
   static dataSubjectAccount: Subject<any> = new Subject<any>();
@@ -22,6 +23,9 @@ export class AuthService {
     {
       console.log('jwt: ', this.jwt);
       var userInfo = this.getUserInfo(this.jwt ?? '');
+      console.log('userInfo: ', userInfo);
+      AuthService.role = userInfo['Role'];
+      console.log("Role",AuthService.role);
       const body = {
         token: this.jwt
       }

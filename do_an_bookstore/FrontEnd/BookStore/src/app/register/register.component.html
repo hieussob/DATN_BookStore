@@ -1,64 +1,132 @@
-<div style="margin-top: 20px; padding: 40px 0;">
-  <div class="container" style="width: 100%; max-width: unset;">
-  <div class="form-block mx-auto">
-    <div class="text-center mb-4">
-      <img src="assets/images/logo2.png" alt=""
-        style="width: 120px; height: 120px; object-fit: cover;">
-        BookStore
-      <div style="margin-top: 20px;"><b style="font-size: 25px; ">Đăng ký tài khoản</b></div>
+<!--<div style="margin-top: 20px; padding: 40px 0;">-->
+<!--  <div class="container" style="width: 100%; max-width: unset;">-->
+<!--  <div class="form-block mx-auto">-->
+<!--    <div class="text-center mb-4">-->
+<!--      <img src="assets/images/logo2.png" alt=""-->
+<!--        style="width: 120px; height: 120px; object-fit: cover;">-->
+<!--        BookStore-->
+<!--      <div style="margin-top: 20px;"><b style="font-size: 25px; ">Đăng ký tài khoản</b></div>-->
+<!--    </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="ho">Họ và Tên</label>-->
+<!--        <input type="text" class="form-control" placeholder="Họ và Tên" id="ho" [(ngModel)]="hoVaTen">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="email">Email</label>-->
+<!--        <input type="Email" class="form-control" placeholder="Email" id="email" [(ngModel)]="email">-->
+<!--      </div>-->
+<!--      <div class="form-group last mb-3 datePick">-->
+<!--        <label for="password">Password</label>-->
+<!--        <p-password [(ngModel)]="password" [toggleMask]="true"></p-password>-->
+<!--        <div style="color: red; font-size: 13px; font-weight: 600;">{{rqPassword}}</div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="sdt">Số điện thoại</label>-->
+<!--        <input type="text" class="form-control" placeholder="Số điện thoại" id="sdt" [(ngModel)]="sdt">-->
+<!--      </div>-->
+
+
+
+
+
+<!--      <div class="form-group">-->
+<!--        <label for="diachi">Địa chỉ</label>-->
+<!--        <input type="text" class="form-control" placeholder="Địa chỉ" id="diachi" [(ngModel)]="address">-->
+<!--      </div>-->
+<!--      <div class="form-group datePick">-->
+<!--        <label for="email">Ngày sinh</label>-->
+<!--        <p-calendar [(ngModel)]="ngaySinh"></p-calendar>-->
+<!--      </div>-->
+
+<!--      <input type="submit" value="Đăng ký" class="btn btn-block btn-primary" style="width: 100%;" (click)="showConfirmDialog()">-->
+<!--    <div style="text-align: left; margin-top: 20px;">-->
+<!--      <a>Đã có tài khoản?</a><a routerLink="/login" style="color: rgb(93, 25, 157);"> Đăng nhập</a>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--  <div class="area">-->
+<!--    <ul class="circles">-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<p-toast></p-toast>-->
+
+<div style="height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #ece9e6, #ffffff); padding: 20px;">
+  <div style="display: flex; width: 100%; max-width: 1000px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border-radius: 16px; overflow: hidden; background: #fff;">
+
+    <!-- Left Side -->
+    <div style="flex: 1; background: #5c2d91; color: white; padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <img src="assets/images/logo2.png" alt="Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;">
+      <h2 style="font-size: 28px; font-weight: bold; margin: 0;">BookStore</h2>
+      <p style="margin-top: 10px; text-align: center; font-size: 16px; line-height: 1.5;">
+        Tạo tài khoản để bắt đầu mua sắm những cuốn sách yêu thích của bạn.
+      </p>
     </div>
-      <div class="form-group">
+
+    <!-- Right Side (Form) -->
+    <div style="flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+      <h3 style="font-weight: bold; margin-bottom: 30px; text-align: center; font-size: 24px;">Đăng ký tài khoản</h3>
+
+      <div style="margin-bottom: 16px;">
         <label for="ho">Họ và Tên</label>
-        <input type="text" class="form-control" placeholder="Họ và Tên" id="ho" [(ngModel)]="hoVaTen">
+        <input type="text" id="ho" placeholder="Nhập họ và tên" [(ngModel)]="hoVaTen"
+               style="width: 100%; height: 40px; border-radius: 8px; border: 1px solid #ccc; padding-left: 12px;">
       </div>
-      <div class="form-group">
+
+      <div style="margin-bottom: 16px;">
         <label for="email">Email</label>
-        <input type="Email" class="form-control" placeholder="Email" id="email" [(ngModel)]="email">
+        <input type="email" id="email" placeholder="Nhập email" [(ngModel)]="email"
+               style="width: 100%; height: 40px; border-radius: 8px; border: 1px solid #ccc; padding-left: 12px;">
       </div>
-      <div class="form-group last mb-3 datePick">
-        <label for="password">Password</label>
-        <p-password [(ngModel)]="password" [toggleMask]="true"></p-password>
+
+      <div style="margin-bottom: 16px;">
+        <label for="password">Mật khẩu</label>
+        <p-password [(ngModel)]="password" [toggleMask]="true"
+                  ></p-password>
         <div style="color: red; font-size: 13px; font-weight: 600;">{{rqPassword}}</div>
       </div>
-      <div class="form-group">
+
+      <div style="margin-bottom: 16px;">
         <label for="sdt">Số điện thoại</label>
-        <input type="text" class="form-control" placeholder="Số điện thoại" id="sdt" [(ngModel)]="sdt">
+        <input type="text" id="sdt" placeholder="Nhập số điện thoại" [(ngModel)]="sdt"
+               style="width: 100%; height: 40px; border-radius: 8px; border: 1px solid #ccc; padding-left: 12px;">
       </div>
 
-
-
-
-
-      <div class="form-group">
+      <div style="margin-bottom: 16px;">
         <label for="diachi">Địa chỉ</label>
-        <input type="text" class="form-control" placeholder="Địa chỉ" id="diachi" [(ngModel)]="address">
-      </div>
-      <div class="form-group datePick">
-        <label for="email">Ngày sinh</label>
-        <p-calendar [(ngModel)]="ngaySinh"></p-calendar>
+        <input type="text" id="diachi" placeholder="Nhập địa chỉ" [(ngModel)]="address"
+               style="width: 100%; height: 40px; border-radius: 8px; border: 1px solid #ccc; padding-left: 12px;">
       </div>
 
-      <input type="submit" value="Đăng ký" class="btn btn-block btn-primary" style="width: 100%;" (click)="showConfirmDialog()">
-    <div style="text-align: left; margin-top: 20px;">
-      <a>Đã có tài khoản?</a><a routerLink="/login" style="color: rgb(93, 25, 157);"> Đăng nhập</a>
+      <div style="margin-bottom: 20px;">
+        <label for="ngaySinh">Ngày sinh</label>
+        <p-calendar [(ngModel)]="ngaySinh" ></p-calendar>
+      </div>
+
+      <button (click)="showConfirmDialog()"
+              style="width: 100%; padding: 12px; background-color: #5c2d91; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
+        Đăng ký
+      </button>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <span>Đã có tài khoản?</span>
+        <a routerLink="/login" style="color: #5c2d91; font-weight: bold; text-decoration: none;"> Đăng nhập</a>
+      </div>
     </div>
 
   </div>
-
-  <div class="area">
-    <ul class="circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  </div>
 </div>
+
 <p-toast></p-toast>

@@ -10,14 +10,11 @@
           <div class="flex align-items-center justify-content-between"
                style="display: flex; justify-content: space-between;">
             Sách
-            <!--<button pButton pRipple type="button" label="Thêm mới" class="p-button-info p-button-text"
+            <button pButton pRipple type="button" label="Thêm mới" class="p-button-info p-button-text"
                     style="padding: 8px; border-radius: 5px; font-weight: 800;" (click)="showThemMoi()"></button>
-            <div class="p-toolbar-group-right">
-              <p-button label="Thêm mới" icon="pi pi-plus" class="p-button-success" (onClick)="showThemMoi()"></p-button>
-            </div>
             <div style="font-size: 14px; font-weight: 500;" *ngIf="listBook">{{ 20 * page + 1 }}
               -{{ 20 * page + listBook.length }} trong {{ curTotalRecord }}
-            </div>-->
+            </div>
             <p-button icon="pi pi-refresh" (onClick)="getAll()"></p-button>
           </div>
         </ng-template>

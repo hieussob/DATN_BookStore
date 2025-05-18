@@ -595,8 +595,8 @@ END scroll-top-arrow
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    min-height: 100vh;
-    background: url(../img/slider-bg-2.jpg);
+    min-height: 90vh;
+    background: url(https://i.pinimg.com/736x/f9/34/dc/f934dc6fdd20837d65b2f646d018319c.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -40,6 +40,7 @@ export class ChatboxEmployeeComponent {
       private route: ActivatedRoute,
       private _userService: UserService
     ) {
+      console.log("employeeId", this.employeeId);
     }
 
     ngOnInit(): void {
@@ -93,7 +94,7 @@ export class ChatboxEmployeeComponent {
 
           userId: this.userId,
           userName: this.userName,
-          employeeId: this.employeeId,
+          employeeId: '00000000-0000-0000-0000-000000000010',
           message: this.currentChat
         }).subscribe((data: any) =>{
           this.currentChat = '';

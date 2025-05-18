@@ -45,6 +45,8 @@ export const routes: Routes = [
       { path: 'user', component: UserComponent, title:'Người dùng',canActivate: [AuthGuard] },
       { path: 'employee-admin', component: EmployeeAdminComponent, title:'nhân viên',canActivate: [AuthGuard] },
       { path: 'manager', component: ManagerComponent, title:'quản lý',canActivate: [AuthGuard] },
+      { path: 'chatbox-list', component: ChatboxListUserComponent, title:'Hỗ trợ khách hàng', canActivate: [AuthGuard] },
+      { path: 'chatbox/:userId', component: ChatboxEmployeeComponent, title:'Hỗ trợ khách hàng', canActivate: [AuthGuard] },
     ],
   },
   {
